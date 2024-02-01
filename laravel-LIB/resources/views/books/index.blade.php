@@ -121,10 +121,10 @@
         <div class="bg" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i class="fas fa-house-user me-2"></i>SmartLibra</div>
             <div class="list-group list-group-flush my-3">
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="{{route('dashboard.index')}}" class="list-group-item list-group-item-action bg-transparent second-text "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
 
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-book me-2"></i>Books</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-plus me-2"></i>Reservation</a>
+                <a href="{{route('book.index')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-book me-2"></i>Books</a>
+                <a href="{{route('reservations.index')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-plus me-2"></i>Reservation</a>
 
                 <a href="{{ route('logout') }}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i class="fas fa-power-off me-2"></i>Logout</a>
             </div>

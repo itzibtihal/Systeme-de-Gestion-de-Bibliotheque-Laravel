@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReservationController;
 
 /*
@@ -46,3 +47,6 @@ Route::delete('/books/{book}/destroy', [BookController::class,'destroy'])->name(
 
 //reservation 
 Route::resource('reservations', ReservationController::class);
+
+//dashAdmin
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
