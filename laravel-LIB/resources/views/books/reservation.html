@@ -7,111 +7,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
-    <style>
-        :root {
-            --main-bg-color: #ff7b00;
-            --main-text-color: #fbaa5e;
-            --second-text-color: #d7aa80;
-            --second-bg-color: #eed3b9;
-        }
+   <style>
+     :root {
+  --main-bg-color: #ff7b00;
+  --main-text-color: #fbaa5e;
+  --second-text-color: #d7aa80;
+  --second-bg-color: #eed3b9;
+}
 
-        a {
-            color: black;
-        }
+.primary-text {
+  color: var(--main-text-color);
+}
 
-        .primary-text {
-            color: var(--main-text-color);
-        }
+.second-text {
+  color: var(--second-text-color);
+}
 
-        .second-text {
-            color: var(--second-text-color);
-        }
+.primary-bg {
+  background-color: var(--main-bg-color);
+}
 
-        .primary-bg {
-            background-color: var(--main-bg-color);
-        }
+.secondary-bg {
+  background-color: var(--second-bg-color);
+}
 
-        .secondary-bg {
-            background-color: var(--second-bg-color);
-        }
+.rounded-full {
+  border-radius: 100%;
+}
 
-        .rounded-full {
-            border-radius: 100%;
-        }
+#wrapper {
+  overflow-x: hidden;
+  background-image: linear-gradient(
+    to right,
+    #fd9737,
+    #fda34e,
+    #feb978,
+    #fbcb9f,
+    #f7d8ba
+  );
+}
 
-        #wrapper {
-            overflow-x: hidden;
-            background-image: linear-gradient(to right,
-                    #fd9737,
-                    #fda34e,
-                    #feb978,
-                    #fbcb9f,
-                    #f7d8ba);
-        }
+.bg{
+  background-color: #ffffff;
+}
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
 
-        .bg {
-            background-color: #ffffff;
-        }
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
 
-        #sidebar-wrapper {
-            min-height: 100vh;
-            margin-left: -15rem;
-            -webkit-transition: margin 0.25s ease-out;
-            -moz-transition: margin 0.25s ease-out;
-            -o-transition: margin 0.25s ease-out;
-            transition: margin 0.25s ease-out;
-        }
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
 
-        #sidebar-wrapper .sidebar-heading {
-            padding: 0.875rem 1.25rem;
-            font-size: 1.2rem;
-        }
+#page-content-wrapper {
+  min-width: 100vw;
+}
 
-        #sidebar-wrapper .list-group {
-            width: 15rem;
-        }
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
 
-        #page-content-wrapper {
-            min-width: 100vw;
-        }
+#menu-toggle {
+  cursor: pointer;
+}
 
-        #wrapper.toggled #sidebar-wrapper {
-            margin-left: 0;
-        }
+.list-group-item {
+  border: none;
+  padding: 20px 30px;
+}
 
-        #menu-toggle {
-            cursor: pointer;
-        }
+.list-group-item.active {
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: none;
+}
 
-        .list-group-item {
-            border: none;
-            padding: 20px 30px;
-        }
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
 
-        .list-group-item.active {
-            background-color: transparent;
-            color: var(--main-text-color);
-            font-weight: bold;
-            border: none;
-        }
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
 
-        @media (min-width: 768px) {
-            #sidebar-wrapper {
-                margin-left: 0;
-            }
-
-            #page-content-wrapper {
-                min-width: 0;
-                width: 100%;
-            }
-
-            #wrapper.toggled #sidebar-wrapper {
-                margin-left: -15rem;
-            }
-        }
-    </style>
-    <title>SmartLibra - Admin Dashboard</title>
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+   </style>
+    <title>ImmoConnect - Admin Dashboard</title>
 </head>
 
 <body>
@@ -119,14 +115,19 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i class="fas fa-house-user me-2"></i>SmartLibra</div>
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
+                    class="fas fa-house-user me-2"></i>SmartLibra</div>
             <div class="list-group list-group-flush my-3">
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-book me-2"></i>Books</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-plus me-2"></i>Reservation</a>
-
-                <a href="{{ route('logout') }}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i class="fas fa-power-off me-2"></i>Logout</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text "><i
+                        class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
+                        class="fas fa-book me-2"></i>Books</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i
+                            class="fas fa-plus me-2"></i>Reservation</a>
+                
+                <a href="{{ route('logout') }}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                        class="fas fa-power-off me-2"></i>Logout</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -136,19 +137,21 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0 text-white">Books</h2>
+                    <h2 class="fs-2 m-0 text-white">Reservation</h2>
                 </div>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle second-text fw-bold text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2 text-white"></i>
-
+                            <a class="nav-link dropdown-toggle second-text fw-bold text-white" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2 text-white"></i>{{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -160,9 +163,9 @@
                 </div>
             </nav>
 
-
+          
             <div class="container-fluid px-4">
-                <a href="{{route('book.create')}}" class="btn btn-default" role="button" style="background-color: antiquewhite;">Add new book</a>
+                <a href="{{route('book.create')}}" class="btn btn-default" role="button" style="background-color: antiquewhite;">Add new reservation</a>
                 <div class="row my-5">
                     <div>
                         @if(session()->has('success'))
@@ -179,14 +182,12 @@
                                     <th>
                                         ID
                                     </th>
-                                    <th>title</th>
-                                    <th>image</th>
-                                    <th>author</th>
-                                    <th>genre</th>
-                                    <th>description</th>
-                                    <th>publication year</th>
-                                    <th>total copies</th>
-                                    <th>available copies</th>
+                                    <th> book title</th>
+                                    <th> image</th>
+                                    <th> user name </th>
+                                    <th> reservation date</th>
+                                    <th> return date</th>
+                                    <th> is returned </th>
                                     <th>edit</th>
                                     <th>delete</th>
                                 </tr>
@@ -201,8 +202,7 @@
                                     <td>{{$book->genre}}</td>
                                     <td>{{$book->description}}</td>
                                     <td>{{$book->publication_year}}</td>
-                                    <td>{{$book->total_copies}}</td>
-                                    <td>{{$book->available_copies}}</td>
+                                   
                                     <td>
                                         <a href="{{route('book.edit',['book' => $book])}}"> <ion-icon name="create-outline"></ion-icon></a>
                                     </td>
@@ -226,6 +226,8 @@
                 </div>
 
             </div>
+
+            </div>
         </div>
     </div>
     <!-- /#page-content-wrapper -->
@@ -236,7 +238,7 @@
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
 
-        toggleButton.onclick = function() {
+        toggleButton.onclick = function () {
             el.classList.toggle("toggled");
         };
     </script>

@@ -48,7 +48,6 @@ class BookController extends Controller
     public function update(Book $book ,Request $request){
         $data = $request->validate([
             'title' => 'required',
-            
             'author' => 'required',
             'genre' => 'required',
             'description' => 'required',
@@ -64,7 +63,8 @@ class BookController extends Controller
     }
 
     public function destroy(Book $book){
-        $book->delete();
-        return redirect(route('book.index'))->with('success','book deleted succesffully!');
+        $book->delete(); 
+        return redirect(route('book.index'))->with('success', 'Book deleted successfully!');
     }
+    
 }
