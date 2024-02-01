@@ -108,6 +108,7 @@
 }
    </style>
     <title>ImmoConnect - Admin Dashboard</title>
+    <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
 </head>
 
 <body>
@@ -151,7 +152,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle second-text fw-bold text-white" href="#" id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2 text-white"></i>{{ Auth::user()->name }}
+                                <i class="fas fa-user me-2 text-white"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -165,7 +166,7 @@
 
           
             <div class="container-fluid px-4">
-                <a href="{{ route('book.create') }}" class="btn btn-default" role="button" style="background-color: antiquewhite;">Add new reservation</a>
+                <a href="{{ route('reservations.create') }}" class="btn btn-default" role="button" style="background-color: antiquewhite;">Add new reservation</a>
                 <div class="row my-5">
                     <div>
                         @if(session()->has('success'))
@@ -191,16 +192,17 @@
                                 @foreach($reservations as $reservation)
                                     <tr>
                                         <td>{{ $reservation->id }}</td>
-                                        <td>{{ $reservation->book->title }}</td>
+                                        <td>{{ $reservation->book ? $reservation->book->title : 'N/A' }}</td>
+
                                         <td>{{ $reservation->user->name }}</td>
                                         <td>{{ $reservation->reservation_date }}</td>
                                         <td>{{ $reservation->return_date }}</td>
                                         <td>{{ $reservation->is_returned ? 'Yes' : 'No' }}</td>
                                         <td>
-                                            <a href="{{ route('reservation.edit', ['reservation' => $reservation]) }}"><ion-icon name="create-outline"></ion-icon></a>
+                                            <a href="{{ route('reservations.edit', ['reservation' => $reservation]) }}"><ion-icon name="create-outline"></ion-icon></a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('reservation.destroy', ['reservation' => $reservation]) }}" method="post">
+                                            <form action="{{ route('reservations.destroy', ['reservation' => $reservation]) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit"><ion-icon name="trash-outline"></ion-icon></button>

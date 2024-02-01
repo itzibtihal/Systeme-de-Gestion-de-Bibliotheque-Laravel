@@ -21,12 +21,19 @@ class ReservationController extends Controller
     }
 
     public function store(ReservationFormRequest $request)
-    {
-        $reservation = Reservation::create($request->all());
+{
+    $reservation = Reservation::create($request->all());
+
+    if ($reservation->book) {
         $book = $reservation->book;
         $book->decrement('available_copies');
         return redirect(route('reservations.index'))->with('success', 'Reservation created successfully!');
+    } else {
+        
+        return redirect(route('reservations.index'))->with('error', 'Error creating reservation. Please check the book information.');
     }
+}
+
 
 
     public function show(Reservation $reservation)
@@ -45,7 +52,7 @@ class ReservationController extends Controller
         return redirect(route('reservations.index'))->with('success', 'Reservation updated successfully!');
     }
 
-    
+
     public function destroy(Reservation $reservation)
     {
         $book = $reservation->book;
