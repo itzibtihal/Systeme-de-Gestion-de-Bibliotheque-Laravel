@@ -50,3 +50,9 @@ Route::resource('reservations', ReservationController::class);
 
 //dashAdmin
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+//reservation user 
+Route::get('/myreservations', 'App\Http\Controllers\ReservationUserController@index')->name('myreservations.index');
+Route::post('/myreservations/create/{book}/{user}', 'App\Http\Controllers\ReservationUserController@store')->name('myreservations.store');
+
+

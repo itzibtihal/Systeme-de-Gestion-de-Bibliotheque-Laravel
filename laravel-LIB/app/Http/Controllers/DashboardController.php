@@ -19,6 +19,10 @@ class DashboardController extends Controller
         $usersCount = User::whereNull('is_admin')->count();
         $availableCopiesCount = Book::sum('available_copies');
        
+        $reservations = Reservation::whereDate('created_at', Carbon::today())
+            ->latest()
+            ->limit(6)
+            ->get();
 
        
         return view('dashboard.index', [
@@ -26,6 +30,7 @@ class DashboardController extends Controller
             'todayReservationsCount' => $todayReservationsCount,
             'usersCount' => $usersCount,
             'availableCopiesCount'=>$availableCopiesCount,
+            'reservations' => $reservations,
         ]);
         
     }

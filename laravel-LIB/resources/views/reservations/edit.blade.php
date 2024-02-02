@@ -1,8 +1,6 @@
+<!DOCTYPE html>
 
-        
-        <!DOCTYPE html>
-
-        <html lang="en">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -80,7 +78,7 @@
 </head>
 
 <body>
-<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="container-fluid px-1 py-5 mx-auto">
         <div class="row d-flex justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
                 <h3 class="text-white">Update Reservation</h3>
@@ -120,6 +118,21 @@
                             </div>
                         </div>
 
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            <label class="form-control-label px-3">Is Returned<span class="text-danger"> *</span></label>
+                            <div class="form-check">
+                                <!-- Hidden input for is_returned with value 0 (unchecked) -->
+                                <input type="hidden" name="is_returned" value="0">
+
+                                <!-- Checkbox input for is_returned with value 1 (checked) -->
+                                <input class="form-check-input" type="checkbox" name="is_returned" value="1" {{ $reservation->is_returned ? 'checked' : '' }}>
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                        </div>
+
+
+
+
                         <div class="row justify-content-center">
                             <div class="form-group col-sm-6">
                                 <button type="submit" class="btn-block " style="background-color: bisque;">Update</button>
@@ -129,8 +142,8 @@
                 </div>
             </div>
         </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 
 </html>
