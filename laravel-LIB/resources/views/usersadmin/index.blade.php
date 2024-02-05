@@ -7,17 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
     <style>
         :root {
             --main-bg-color: #ff7b00;
             --main-text-color: #fbaa5e;
             --second-text-color: #d7aa80;
             --second-bg-color: #eed3b9;
-        }
-
-        a {
-            color: black;
         }
 
         .primary-text {
@@ -112,6 +107,7 @@
         }
     </style>
     <title>SmartLibra - Admin Dashboard</title>
+    <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
 </head>
 
 <body>
@@ -122,14 +118,14 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i class="fas fa-house-user me-2"></i>SmartLibra</div>
             <div class="list-group list-group-flush my-3">
                 <a href="{{route('dashboard.index')}}" class="list-group-item list-group-item-action bg-transparent second-text "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="{{route('usersadmin.index')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i class="fas fa-user me-2"></i>Users</a>
-                <a href="{{route('book.index')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-book me-2"></i>Books</a>
-                <a href="{{route('reservations.index')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-plus me-2"></i>Reservation</a>
-
+                <a href="{{route('usersadmin.index')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-user me-2"></i>Users</a>
+                <a href="{{route('book.index')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i class="fas fa-book me-2"></i>Books</a>
+                <a href="{{route('dashboard.index')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i class="fas fa-plus me-2"></i>Reservation</a>
                 <form method="POST" action="{{ route('logout') }}">
-                  @csrf
-                  <a href="{{ route('logout') }}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"> <button type="submit" class="dropdown-item"> <i class="fas fa-power-off me-2"></i>Logout</button></a>
+                    @csrf
+                    <a href="{{ route('logout') }}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"> <button type="submit" class="dropdown-item"> <i class="fas fa-power-off me-2"></i>Logout</button></a>
                 </form>
+
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -139,7 +135,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0 text-white">Books</h2>
+                    <h2 class="fs-2 m-0 text-white">Users</h2>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,15 +147,17 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle second-text fw-bold text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user me-2 text-white"></i> {{ $user->name }}
-
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><form method="POST" action="{{ route('logout') }}">
-                  @csrf
-                  <button type="submit" class="dropdown-item">Logout</button>
-                </form></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+
                             </ul>
                         </li>
                     </ul>
@@ -168,72 +166,56 @@
 
 
             <div class="container-fluid px-4">
-                <a href="{{route('book.create')}}" class="btn btn-default" role="button" style="background-color: antiquewhite;">Add new book</a>
-                <div class="row my-5">
-                    <div>
-                        @if(session()->has('success'))
-                        <div>
-                            {{session('success')}}
-                        </div>
-                        @endif
-                    </div>
-                    <h3 class="fs-4 mb-3 text-white">Recent Books</h3>
-                    <div class="col">
-                        <table class="table bg-white rounded shadow-sm  table-hover">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>title</th>
-                                    <th>image</th>
-                                    <th>author</th>
-                                    <th>genre</th>
-                                    <th>description</th>
-                                    <th>publication year</th>
-                                    <th>total copies</th>
-                                    <th>available copies</th>
-                                    <th>edit</th>
-                                    <th>delete</th>
-                                </tr>
-                                @foreach($books as $book)
-                                <tr>
-                                    <td>{{$book->id}}</td>
-                                    <td>{{$book->title}}</td>
-                                    <td>
-                                    <img src="{{ asset('storage/' . $book->image) }}" alt="Book Image" style="max-width: 40px; max-height: 40px;">
-                                    
-                                    </td>
-                                    <td>{{$book->author}}</td>
-                                    <td>{{$book->genre}}</td>
-                                    <td>{{$book->description}}</td>
-                                    <td>{{$book->publication_year}}</td>
-                                    <td>{{$book->total_copies}}</td>
-                                    <td>{{$book->available_copies}}</td>
-                                    <td>
-                                        <a href="{{route('book.edit',['book' => $book])}}"> <ion-icon name="create-outline"></ion-icon></a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('book.destroy', ['book' => $book]) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit">
-                                                <ion-icon name="trash-outline"></ion-icon>
-                                            </button>
-                                        </form>
-
-                                    </td>
-                                </tr>
-                                @endforeach
-
-
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
+    <a href="{{ route('usersadmin.create') }}" class="btn btn-default" role="button" style="background-color: antiquewhite;">Add new user</a>
+    <div class="row my-5">
+        <div>
+            @if(session()->has('success'))
+                <div>{{ session('success') }}</div>
+            @endif
         </div>
+        <h3 class="fs-4 mb-3 text-white">Recent users</h3>
+        <div class="col">
+            <table class="table table-striped bg-white rounded shadow-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
+                            <td>
+                                <a href="{{ route('usersadmin.edit', ['user' => $user]) }}"><ion-icon name="pencil-outline"></ion-icon></a>
+                            </td>
+                            <td>
+                                <form action="{{ route('usersadmin.destroy', ['user' => $user]) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit"><ion-icon name="trash-outline"></ion-icon></button>
+                                </form>
+                                
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+        </div>
+    </div>
     </div>
     <!-- /#page-content-wrapper -->
     </div>

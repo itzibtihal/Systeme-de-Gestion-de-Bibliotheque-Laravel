@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReservationFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
     public function index()
     {
         $reservations = Reservation::all();
-        return view('reservations.index', ['reservations' => $reservations]);
+        $user = User::find(Auth::id());
+        return view('reservations.index', ['reservations' => $reservations, 'user' => $user]);
     }
 
 

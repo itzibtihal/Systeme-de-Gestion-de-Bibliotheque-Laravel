@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
     public function index(){
         $books = Book::all();
-        return view ('books.index',['books'=>$books]);
+        $user = User::find(Auth::id());
+        return view ('books.index',['books'=>$books, 'user' => $user]);
     }
 
     public function create(){
@@ -30,8 +33,9 @@ class BookController extends Controller
         ]);
     
         $imagePath = $request->file('image')->store('images', 'public');
+
     
-        $data = $request->except('image'); // Exclude image from the main data array
+        $data = $request->except('image'); 
         $data['image'] = $imagePath;
     
         $newBook = Book::create($data);
